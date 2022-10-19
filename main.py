@@ -14,7 +14,7 @@ def main():
     url, proc = run_tunnel()
     print("Tunnel URL: ", url)
 
-    #ensure_libraries()
+    ensure_libraries()
 
 if __name__ == "__main__":
     main()
