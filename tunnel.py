@@ -7,7 +7,7 @@ def run_tunnel():
 
     env = os.environ.copy()
     env['PYTHONUNBUFFERED'] = "1"
-    proc = subprocess.Popen('npx localtunnel --port 9014', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    proc = subprocess.Popen('npx localtunnel --port 9014', shell=True, stdout=subprocess.PIPE)
     line = proc.stdout.readline()  # read the first line, which either contains the tunnel address or an error message
     url = str(line, 'utf8').strip().replace('your url is: ', '')
 
