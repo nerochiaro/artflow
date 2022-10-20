@@ -31,7 +31,7 @@ def ensure_libraries():
     if os.access(libs_archive_path, os.R_OK):
         # if there is a pre-loaded library bundle in drive, copy it to a local temporary path, then unzip it in the content root
         # (where it will create a subdirectory).
-        run_subprocess(f"cp {libs_archive_path} {tmp} && cd {content()} && tar xvf {path.join(tmp, libs_archive_name)}")
+        run_subprocess(f"cp {libs_archive_path} {tmp} && cd {content()} && tar xf {path.join(tmp, libs_archive_name)}")
     else:
         # otherwise install the necessary libraries in a subdirectory of the content root, then make a bundle of it and upload it
         # to drive. for this run they will be already available, and for the next run the bundle will be found and used.
@@ -39,7 +39,7 @@ def ensure_libraries():
         install_library('diffusers', 'https://github.com/huggingface/diffusers.git', 'v0.4.1', libs_root)
         install_library('transformers', 'https://github.com/huggingface/transformers.git', 'v4.22.2', libs_root)
         install_hub(libs_root)
-        run_subprocess(f"cd {path.dirname(libs_root)} && tar cvvzf {libs_archive_name} {path.basename(libs_root)} && " +
+        run_subprocess(f"cd {path.dirname(libs_root)} && tar czf {libs_archive_name} {path.basename(libs_root)} && " +
                        f"cp -v {libs_archive_name} {path.dirname(libs_archive_path)}")
 
     # ensure the libraries can be found
