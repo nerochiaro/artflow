@@ -9,7 +9,7 @@ def get_path(leaf):
     return path.join(root, leaf)
 
 def run_subprocess(cmd):
-    proc = subprocess.Popen(cmd, shell=True, stdout=sys.stdout, stderr=sys.stderr)
+    proc = subprocess.Popen(cmd, shell=True)
     return proc.wait()
 
 def install_hub(root):
