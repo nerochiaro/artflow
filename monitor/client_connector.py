@@ -10,7 +10,7 @@ class ClientConnector:
         self.exit = exit
         self.app = web.Application()
         self.app.add_routes([web.get('/ws', self.websocket_handler)])
-        ui_dir = path.join(path.dirname(__file__), "..", "ui")
+        ui_dir = path.abspath(path.join(path.dirname(__file__), "..", "ui"))
         self.app.add_routes([web.static('/ui', ui_dir)])
         self.ws = None
 
