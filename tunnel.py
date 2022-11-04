@@ -1,13 +1,14 @@
 import subprocess
 import time
+from environment import tunnel_dir
 
 def open_tunnel(port):
-    tunnel = subprocess.Popen(f"node tunnel.js {port}", shell=True, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    tunnel = subprocess.Popen(f"node tunnel.js {port} {tunnel_dir}", shell=True, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # TODO: We should probably care about this subprocess, somehow, when running locally
 
     time.sleep(1)  # TODO: ideally we should monitor the file and when it appears and is closed read it.
     try:
-        url = open("/tmp/url", "r").read()
+        url = open(f"/{tunnel_dir}/url", "r").read()
         return url
     except Exception as e:
         print(e)

@@ -3,6 +3,7 @@ import asyncio
 import aiohttp
 from aiohttp import web
 import json
+from environment import tunnel_dir
 
 class ClientConnector:
     def __init__(self, port, exit, ui_dir, onconnect):
@@ -12,6 +13,7 @@ class ClientConnector:
         self.app = web.Application()
         self.app.add_routes([web.get('/ws', self.websocket_handler)])
         self.app.add_routes([web.static('/ui', ui_dir)])
+        self.app.add_routes([web.static('/conf', tunnel_dir)])
         self.ws = None
 
     async def websocket_handler(self, request):
@@ -63,7 +65,4 @@ class ClientConnector:
             await site.stop()
             print("ClientConnector has stopped")
 
-    async def on_state(self, state):
-        await self.ws.send_str(json.dumps(state))
-    async def on_progress(self, progress):
-        await self.ws.send_str(json.dumps(progress))
+

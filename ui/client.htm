@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<script>
-    ws = new WebSocket('ws://localhost:9015/ws')
-    ws.onopen = (x) => console.log("open", x)
-    ws.onerror = (e) => console.log("error", e)
-    ws.onclose = () => console.log("closed")
-    ws.onmessage = (msg) => console.log("message", msg)
-</script>
+<head>
+    <script src="/conf/socket.js"></script>
+</head>
 <body>
     Artflow UI
+
+    <script>
+        ws = new WebSocket(socket_url); // from /conf/socket.js
+        ws.onopen = (x) => console.log("open", x)
+        ws.onerror = (e) => console.log("error", e)
+        ws.onclose = () => console.log("closed")
+        ws.onmessage = (msg) => console.log("message", msg)
+    </script>
 </body>

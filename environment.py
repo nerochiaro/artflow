@@ -1,6 +1,8 @@
 from os import path
 import os
 
+tunnel_dir = "/tmp/tunnel"
+
 def content(*paths):
     root = os.environ.get('CONTENT_ROOT', '/content')
     return path.join(root, *paths)
