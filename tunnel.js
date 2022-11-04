@@ -1,7 +1,7 @@
 const localtunnel = require('localtunnel'),
       fs = require('fs');
 
-const port = sys.argv[2]
-localtunnel(sys.argv[2])
+const port = process.argv[2];
+localtunnel(port)
     .then(tunnel => { fs.writeFileSync("/tmp/url", tunnel.url) })
     .catch(e => console.error(e))
