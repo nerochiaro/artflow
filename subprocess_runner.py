@@ -14,7 +14,7 @@ class SubprocessRunner:
         while True:
             line = await stream.readline()
             if line:
-                cb(line)
+                await cb(line)
             else:
                 self.log(stream_name, "stream finished")
                 break
@@ -52,4 +52,10 @@ class SubprocessRunner:
             capture_out, capture_err
         )
         return sout, serr, code
+
+    async def forward(self):
+        code = await self._stream_subprocess(
+            lambda v: self.log(str(v, 'utf8').strip()), lambda v: self.log(str(v, 'utf8').strip())
+        )
+        return code
 

@@ -1,0 +1,22 @@
+{
+  "name": "artflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerochiaro/artflow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nerochiaro/artflow/issues"
+  },
+  "homepage": "https://github.com/nerochiaro/artflow#readme",
+  "dependencies": {
+    "localtunnel": "^2.0.2"
+  }
+}

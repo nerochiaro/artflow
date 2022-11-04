@@ -7,3 +7,6 @@ def content(*paths):
 
 def drive(*paths):
     return content('drive', *paths)
+
+def is_colab():
+    return "COLAB_GPU" in os.environ

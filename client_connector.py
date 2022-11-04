@@ -5,12 +5,12 @@ from aiohttp import web
 import json
 
 class ClientConnector:
-    def __init__(self, port, exit):
+    def __init__(self, port, exit, ui_dir, onconnect):
         self.port = port
         self.exit = exit
+        self.onconnect = onconnect
         self.app = web.Application()
         self.app.add_routes([web.get('/ws', self.websocket_handler)])
-        ui_dir = path.abspath(path.join(path.dirname(__file__), "..", "ui"))
         self.app.add_routes([web.static('/ui', ui_dir)])
         self.ws = None
 
@@ -20,6 +20,8 @@ class ClientConnector:
         print('Websocket connection ready')
 
         self.ws = ws
+        if self.onconnect is not None:
+          await self.onconnect(self.ws)
 
         async for msg in ws:
             print("received msg", msg)
