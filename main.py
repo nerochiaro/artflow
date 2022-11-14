@@ -16,6 +16,3 @@ async def main():
     ui_dir = os.path.join(os.getcwd(), "ui")
     connector = ClientConnector(port, exit, ui_dir, on_connect)
     await connector.run()
-
-if __name__ == "__main__":
-    asyncio.run(main())
